@@ -31,7 +31,7 @@
 foreach($deposits as $deposit){
   ?>
   <tr>
-    <td><input type="radio" name="Commitment.scheme_id" value="" checked='checked'></td>
+      <td><input type="radio" name="scheme_id" value="<?php echo $deposit['Deposit']['id']; ?>" checked='checked'></td>
     <td><?php echo "&nbsp;&nbsp;<strong>".$deposit['Deposit']['return_per'].' % </strong> Growth in'; ?></td>
     <td><?php echo "&nbsp;&nbsp;<strong>".$deposit['Deposit']['deposit_days'].' Days </strong>'; ?></td>
   </tr>
@@ -40,18 +40,6 @@ foreach($deposits as $deposit){
              ?>
           </table>
         </div>
-
-        <div class="form-group">
-          <label>IFSC</label>
-          <?php
-          echo $this->Form->input('ifsc',array(
-            'label'=>false,
-            'div'=>false,
-            'class'=>'form-control',
-          ));
-          ?>
-        </div>
-
           <button type="submit" class="btn btn-default">Submit</button>
         <?php echo $this->Form->end(); ?>
     </div>
