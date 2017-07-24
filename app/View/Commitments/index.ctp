@@ -14,11 +14,12 @@ echo $this->Html->link('Add New Commitment',array(
     <thead>
       <tr>
         <th>SL#</th>
-        <th>Name</th>
-        <th>Account No.</th>
-        <th>Branch</th>
-        <th>IFSC</th>
-        <th>Is Active ?</th>
+        <th>Comm. Date</th>
+        <th>Comm. Amt.</th>
+        <th>Duration</th>
+        <th>Growth(%)</th>
+        <th>Maturity Amt.</th>
+        <th>Maturity Date</th>
         <th>Actions</th>
        </tr>
      </thead>
@@ -29,33 +30,20 @@ foreach($datas as $data){
   $i++;
  ?>
        <tr>
-         <th scope="row"><?php echo $i; ?></th>
-         <td><?php echo $data['Bank']['name']; ?></td>
-         <td><?php echo $data['Bank']['account_no']; ?></td>
-         <td><?php echo $data['Bank']['branch']; ?></td>
-         <td><?php echo $data['Bank']['ifsc']; ?></td>
+         <td scope="row"><?php echo $i; ?></td>
+         <td><?php echo date("d/m/Y",strtotime($data['Commitment']['commitment_date'])); ?></td>
+         <td><?php echo $data['Commitment']['commitment_amount']; ?></td>
+         <td><?php echo $data['Commitment']['deposit_days']; ?></td>
+         <td><?php echo $data['Commitment']['return_per']; ?></td>
+         <td><?php echo $data['Commitment']['return_amount']; ?></td>
          <td>
 <?php
-if($data['Bank']['is_active'] == 1){
-  echo "<font color=green>Yes</font>";
-}else{
-  echo "<font color=red>No</font>";
-}
+    echo date("d/m/Y",strtotime($data['Commitment']['return_date']));
  ?>
          </td>
          <td>
 <?php
-    echo $this->Html->link('Edit',array(
-      'controller'=>'banks',
-      'action'=>'edit',
-       $data['Bank']['code']
-    ));
-    echo "&nbsp;&nbsp;||&nbsp;&nbsp;";
-    echo $this->Html->link('Delete',array(
-      'controller'=>'banks',
-      'action'=>'delete',
-      $data['Bank']['code']
-    ));
+    
  ?>
          </td>
        </tr>
